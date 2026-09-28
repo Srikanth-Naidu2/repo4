@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Students | Student Project{% endblock %}
+
+{% block content %}
+<p class="eyebrow">Student records</p>
+<h1>Students</h1>
+<form class="student-form" method="post">
+	{% csrf_token %}
+	<label for="name">Name</label>
+	<input id="name" name="name" maxlength="100" required>
+	<label for="email">Email</label>
+	<input id="email" name="email" type="email">
+	<label for="course">Course</label>
+	<input id="course" name="course" maxlength="100">
+	{% if error %}<p class="status" role="alert">{{ error }}</p>{% endif %}
+	<button class="action" type="submit">Add student</button>
+</form>
+
+<h2>Student list</h2>
+{% if students %}
+<ul class="student-list">
+	{% for student in students %}
+	<li>
+		<strong>{{ student.name }}</strong>
+		{% if student.course %}<span>{{ student.course }}</span>{% endif %}
+		{% if student.email %}<span>{{ student.email }}</span>{% endif %}
+	</li>
+	{% endfor %}
+</ul>
+{% else %}
+<p class="status">No students added yet.</p>
+{% endif %}
+<a href="/">Back to home</a>
+{% endblock %}

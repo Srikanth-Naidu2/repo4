@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Student Project{% endblock %}
+
+{% block content %}
+<p class="eyebrow">Welcome</p>
+<h1>Student Project</h1>
+<p>{{ student_count }} student{{ student_count|pluralize }} registered.</p>
+<a class="action" href="/student/">View students</a>
+{% endblock %}
